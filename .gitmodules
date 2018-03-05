@@ -1,0 +1,3 @@
+[submodule "d3-workbench"]
+	path = d3-workbench
+	url = git@github.com:BastiTee/d3-workbench

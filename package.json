@@ -1,0 +1,16 @@
+{
+    "name": "d3-workbench-tutorials",
+    "version": "0.0.1",
+    "description": "A d3.js-powered workbench for rapid visualization prototyping",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BastiTee/d3-workbench-tutorials"
+    },
+    "author": "Basti Tee",
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/BastiTee/d3-workbench-tutorials",
+    "devDependencies": {
+        "eslint": "^4.13.1",
+        "eslint-config-google": "^0.9.1"
+    }
+}
