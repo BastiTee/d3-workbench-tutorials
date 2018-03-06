@@ -48,7 +48,7 @@
             '<br /><b>Click dots</b> to search for company online.' +
             '<br /><b>Use button</b> to change scale alignment.'
             );
-        cv.call(box);
+        cv.div.call(box);
 
         // NEW CODE BELOW -------------------------
 
@@ -72,6 +72,6 @@
             .style('right', cv.mar.right)
             .style('bottom', 3)
             .callback(callback);
-        cv.call(button);
+        cv.div.call(button);
     });
 })();

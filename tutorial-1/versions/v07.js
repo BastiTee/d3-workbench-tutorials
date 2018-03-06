@@ -6,11 +6,8 @@
         .data('data.csv')
         .toCanvas();
 
-    d3wb.util.injectCSS(`
-        @import url('https://fonts.googleapis.com/css?family=Mina');` +
-        cv.parentDivId + ` * {
-            font-family: 'Mina', sans-serif;
-        }`);
+    d3wb.util.injectCSS(cv.parentDivId +
+        ' * { font-family: Impact, Charcoal, sans-serif; }');
 
     // NEW CODE ABOVE -------------------------
 
@@ -57,7 +54,7 @@
             '<br /><b>Click dots</b> to search for company online.' +
             '<br /><b>Use button</b> to change scale alignment.'
         );
-        cv.call(box);
+        cv.div.call(box);
 
         let callback = function(value) {
             if (value == 'Squared scale') {
@@ -79,6 +76,6 @@
             .style('right', cv.mar.right)
             .style('bottom', 3)
             .callback(callback);
-        cv.call(button);
+        cv.div.call(button);
     });
 })();

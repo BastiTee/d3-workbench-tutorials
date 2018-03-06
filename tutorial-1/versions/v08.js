@@ -7,11 +7,8 @@
         .data('data.csv')
         .toCanvas();
 
-    d3wb.util.injectCSS(`
-        @import url('https://fonts.googleapis.com/css?family=Mina');` +
-        cv.parentDivId + ` * {
-            font-family: 'Mina', sans-serif;
-        }`);
+    d3wb.util.injectCSS(cv.parentDivId +
+        ' * { font-family: Impact, Charcoal, sans-serif; }');
 
     d3.csv(cv.data, function(error, data) {
         d3wb.util.autocastNumericColumns(data);
@@ -66,7 +63,7 @@
             .infoColor(d3wb.color.foreground)
             .controlColor(d3wb.color.foreground)
             .controlColorHover(d3wb.color.yellow);
-        cv.call(box);
+        cv.div.call(box);
 
         let callback = function(value) {
             if (value == 'Squared scale') {
@@ -91,6 +88,6 @@
             .style('background-color', d3wb.color.blue)
             .style('border', '1px solid ' + d3wb.color.foreground)
             .callback(callback);
-        cv.call(button);
+        cv.div.call(button);
     });
 })();

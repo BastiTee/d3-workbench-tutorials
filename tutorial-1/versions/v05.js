@@ -49,6 +49,6 @@
             '<br /><br /><b>Hover over dots</b> to show company details.' +
             '<br /><b>Click dots</b> to search for company online.'
         );
-        cv.call(box);
+        cv.div.call(box);
     });
 })();
