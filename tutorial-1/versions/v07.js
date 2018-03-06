@@ -32,7 +32,8 @@
         cv.call(d3wb.add.yAxisLabel('Employees'));
 
         let tooltip = d3wb.mouse.tooltip().selector(function(d) {
-            return d['Company'] + '\n' + d['Market value $m'] + ' M$\n' +
+            return d['Company'] + '\n' +
+                d['Market value $m'] + ' M$\n' +
                 d['Employees'] + ' Employees\n';
         });
         cv.selectAll('.scatter-datapoint').call(tooltip);
