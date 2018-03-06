@@ -1,6 +1,6 @@
 (function() {
     let cv = d3wb.config()
-        .attr('margin', '50 50 55 70')
+        .attr('margin', '50 10 60 70')
         .attr('debug', 'true')
         .data('data.csv')
         .toCanvas();

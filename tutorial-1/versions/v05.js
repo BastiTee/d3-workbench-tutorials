@@ -1,6 +1,6 @@
 (function() {
     let cv = d3wb.config()
-        .attr('margin', '50 50 55 70')
+        .attr('margin', '50 10 60 70')
         .attr('debug', 'true')
         .data('data.csv')
         .toCanvas();
@@ -15,14 +15,19 @@
             .yDataPoints('Employees');
         cv.datum(data).call(plot);
 
-        cv.call(d3wb.add.xAxisBottom(plot.xAxisScale()).y(cv.hei));
+        let xAxis = d3wb.add.xAxisBottom(plot.xAxisScale())
+            .y(cv.hei).ticks(5);
+        cv.call(xAxis);
         cv.call(d3wb.add.xAxisLabel('Market value $M').orientation('bottom'));
 
-        cv.call(d3wb.add.yAxis(plot.yAxisScale()).tickFormat(d3.format('.2s')));
+        let yAxis = d3wb.add.yAxis(plot.yAxisScale())
+            .ticks(5).tickFormat(d3.format('.2s'));
+        cv.call(yAxis);
         cv.call(d3wb.add.yAxisLabel('Employees'));
 
         let tooltip = d3wb.mouse.tooltip().selector(function(d) {
-            return d['Company'] + '\n' + d['Market value $m'] + ' M$\n';
+            return d['Company'] + '\n' + d['Market value $m'] + ' M$\n' +
+                d['Employees'] + ' Employees\n';
         });
         cv.selectAll('.scatter-datapoint').call(tooltip);
 
@@ -34,7 +39,7 @@
 
         // NEW CODE BELOW -------------------------
 
-        cv.call(d3wb.add.title('Financial Times Global 500 – 2015'))
+        cv.call(d3wb.add.title('Financial Times Global 500 – 2015'));
 
         let box = d3wb.html.infoBox('This scatter plot compares the <b>' +
             'number of employees</b> with<br />the <b>market value</b> of the' +

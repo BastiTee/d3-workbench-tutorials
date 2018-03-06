@@ -1,19 +1,9 @@
 (function() {
-
-    // NEW CODE BELOW -------------------------
-
     let cv = d3wb.config()
-        .attr('margin', '50 50 55 70')
+        .attr('margin', '50 10 60 70')
+        .attr('debug', 'true')
         .data('data.csv')
         .toCanvas();
-
-    d3wb.util.injectCSS(`
-        @import url('https://fonts.googleapis.com/css?family=Mina');` +
-        cv.parentDivId + ` * {
-            font-family: 'Mina', sans-serif;
-        }`)
-
-    // NEW CODE ABOVE -------------------------
 
     d3.csv(cv.data, function(error, data) {
         d3wb.util.autocastNumericColumns(data);
@@ -25,14 +15,19 @@
             .yDataPoints('Employees');
         cv.datum(data).call(plot);
 
-        cv.call(d3wb.add.xAxisBottom(plot.xAxisScale()).y(cv.hei));
+        let xAxis = d3wb.add.xAxisBottom(plot.xAxisScale())
+            .y(cv.hei).ticks(5);
+        cv.call(xAxis);
         cv.call(d3wb.add.xAxisLabel('Market value $M').orientation('bottom'));
 
-        cv.call(d3wb.add.yAxis(plot.yAxisScale()).tickFormat(d3.format('.2s')));
+        let yAxis = d3wb.add.yAxis(plot.yAxisScale())
+            .ticks(5).tickFormat(d3.format('.2s'));
+        cv.call(yAxis);
         cv.call(d3wb.add.yAxisLabel('Employees'));
 
         let tooltip = d3wb.mouse.tooltip().selector(function(d) {
-            return d['Company'] + '\n' + d['Market value $m'] + ' M$\n';
+            return d['Company'] + '\n' + d['Market value $m'] + ' M$\n' +
+                d['Employees'] + ' Employees\n';
         });
         cv.selectAll('.scatter-datapoint').call(tooltip);
 
@@ -42,7 +37,7 @@
         });
         cv.selectAll('.scatter-datapoint').call(click);
 
-        cv.call(d3wb.add.title('Financial Times Global 500 – 2015'))
+        cv.call(d3wb.add.title('Financial Times Global 500 – 2015'));
 
         let box = d3wb.html.infoBox('This scatter plot compares the <b>' +
             'number of employees</b> with<br />the <b>market value</b> of the' +
@@ -50,5 +45,29 @@
             '<br /><br /><b>Hover over dots</b> to see company details.' +
             '<br /><b>Click dots</b> to search for company online.');
         cv.call(box);
+
+        // NEW CODE BELOW -------------------------
+
+        let callback = function(value) {
+            if (value == 'Squared scale') {
+                plot.xAxisScale(d3.scaleLinear());
+                plot.yAxisScale(d3.scaleLinear());
+            } else {
+                plot.xAxisScale(d3.scalePow().exponent(0.1));
+                plot.yAxisScale(d3.scalePow().exponent(0.2));
+            }
+            xAxis.scale(plot.xAxisScale());
+            yAxis.scale(plot.yAxisScale());
+            plot.update();
+            xAxis.update();
+            yAxis.update();
+        };
+        let button = d3wb.html.button()
+            .options(['Linear scale', 'Squared scale'])
+            .style('width', 180)
+            .style('right', cv.mar.right)
+            .style('bottom', 3)
+            .callback(callback);
+        cv.call(button);
     });
 })();
