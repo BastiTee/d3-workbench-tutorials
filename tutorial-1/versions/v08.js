@@ -1,9 +1,9 @@
 (function() {
-
-    d3wb.theme('gotham');
+    d3wb.theme('dark');
 
     let cv = d3wb.config()
         .attr('margin', '50 10 60 70')
+        .attr('bgColor', d3wb.color.background)
         .data('data.csv')
         .toCanvas();
 
@@ -58,9 +58,11 @@
                 'This scatter plot compares the <b>' +
                 'number of employees</b> with<br />the <b>market ' +
                 'value</b> of the' +
-                '<i>Financial Times Global 500</i><br />companies from 2015.' +
-                '<br /><br /><b>Hover over dots</b> to see company details.' +
-                '<br /><b>Click dots</b> to search for company online.')
+                '<i>Financial Times Global 500</i><br />companies in 2015.' +
+                '<br /><br /><b>Hover over dots</b> to show company details.' +
+                '<br /><b>Click dots</b> to search for company online.' +
+                '<br /><b>Use button</b> to change scale alignment.'
+            )
             .infoColor(d3wb.color.foreground)
             .controlColor(d3wb.color.foreground)
             .controlColorHover(d3wb.color.yellow);

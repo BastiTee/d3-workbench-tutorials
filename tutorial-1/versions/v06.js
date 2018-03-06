@@ -39,11 +39,15 @@
 
         cv.call(d3wb.add.title('Financial Times Global 500 – 2015'));
 
-        let box = d3wb.html.infoBox('This scatter plot compares the <b>' +
-            'number of employees</b> with<br />the <b>market value</b> of the' +
-            '<i>Financial Times Global 500</i><br />companies from 2015.' +
-            '<br /><br /><b>Hover over dots</b> to see company details.' +
-            '<br /><b>Click dots</b> to search for company online.');
+        let box = d3wb.html.infoBox(
+            'This scatter plot compares the <b>' +
+            'number of employees</b> with<br />the <b>market ' +
+            'value</b> of the' +
+            '<i>Financial Times Global 500</i><br />companies in 2015.' +
+            '<br /><br /><b>Hover over dots</b> to show company details.' +
+            '<br /><b>Click dots</b> to search for company online.' +
+            '<br /><b>Use button</b> to change scale alignment.'
+            );
         cv.call(box);
 
         // NEW CODE BELOW -------------------------
