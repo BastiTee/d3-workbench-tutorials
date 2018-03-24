@@ -5,7 +5,7 @@
         .data('data.csv')
         .toCanvas();
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         // NEW CODE BELOW -------------------------
 
         d3wb.util.autocastNumericColumns(data);

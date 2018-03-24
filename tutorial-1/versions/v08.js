@@ -14,7 +14,7 @@
         ' * { font-family: Impact, Charcoal, sans-serif; }');
 
     // Load data ..
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         // .. and cast all number values
         d3wb.util.autocastNumericColumns(data);
 

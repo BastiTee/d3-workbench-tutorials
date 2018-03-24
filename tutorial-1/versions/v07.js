@@ -11,7 +11,7 @@
 
     // NEW CODE ABOVE -------------------------
 
-    d3.csv(cv.data, function(error, data) {
+    d3.csv(cv.data).then(function(data) {
         d3wb.util.autocastNumericColumns(data);
 
         let plot = wbScatterPlot()
